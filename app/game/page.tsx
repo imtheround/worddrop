@@ -2,14 +2,17 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, useSearchParams } from "next/navigation";
-import { match } from 'assert';
-const en = require('an-array-of-english-words');
-const fr = require('an-array-of-french-words');
+import { Suspense } from 'react';
+import en from 'an-array-of-english-words';
+import fr from 'an-array-of-french-words';
+
+const englishWords = en as string[];
+const frenchWords = fr as string[];
 
 
 
 const getRandomWord = (lang = 'en') => {
-  const list = lang === 'fr' ? fr : en;
+  const list = lang === 'fr' ? frenchWords : englishWords;
   return list[Math.floor(Math.random() * list.length)];
 };
 
@@ -23,6 +26,14 @@ interface FallingWord {
 }
 
 export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-100 font-mono">Loading...</div>}>
+      <GameContent />
+    </Suspense>
+  );
+}
+
+function GameContent() {
   const [words, setWords] = useState<FallingWord[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [score, setScore] = useState(0);
@@ -64,15 +75,18 @@ export default function Home() {
   const searchParams = useSearchParams();
   const diff = searchParams.get("diff");
   const router = useRouter();
-  if (!diff) {
-    router.push("/menu");
-  } else if (
-    diff !== "easy" &&
-    diff !== "medium" &&
-    diff !== "hard"
-  ) {
-    router.push("/menu");
-  }
+
+  useEffect(() => {
+    if (!diff) {
+      router.push("/menu");
+    } else if (
+      diff !== "easy" &&
+      diff !== "medium" &&
+      diff !== "hard"
+    ) {
+      router.push("/menu");
+    }
+  }, [diff, router]);
   const [speede, setSpeede] = useState(0);
   const [intervall, setIntervall] = useState(2000);
 

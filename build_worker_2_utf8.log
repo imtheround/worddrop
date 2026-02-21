@@ -1,0 +1,112 @@
+﻿
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé OpenNext ΓÇö Cloudflare build Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+node.exe : WARN OpenNe
+xt is not fully compat
+ible with Windows.
+At C:\Program Files\no
+dejs\npx.ps1:29 char:3
++   & $NODE_EXE $NPX_C
+LI_JS $args
++   ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (WARN OpenN   
+ ext i...e with Wi    
+ndows.:String) []    ,
+ RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+WARN For optimal perfo
+rmance, it is recommen
+ded to use Windows Sub
+system for Linux (WSL)
+.
+WARN While OpenNext ma
+y function on Windows,
+ it could encounter un
+predictable failures d
+uring runtime.
+file:///C:/Users/round
+/projects/word-drop-ga
+me/node_modules/@openn
+extjs/cloudflare/dist/
+cli/build/utils/ensure
+-cf-config.js:62
+        throw new Erro
+r(errorMessage);
+              ^
+
+Error: The `open-next.
+config.ts` should have
+ a default export like
+ this:
+
+{
+  default: {
+    override: {
+      wrapper: "cloudf
+lare-node",
+      converter: "edge
+",
+      proxyExternalReq
+uest: "fetch",
+      incrementalCache
+: "dummy" | function,
+      tagCache: "dummy
+" | function,
+      queue: "dummy" |
+ "direct" | function,
+    },
+  },
+  edgeExternals: ["nod
+e:crypto"],
+  middleware: {
+    external: true,
+    override: {
+      wrapper: "cloudf
+lare-edge",
+      converter: "edge
+",
+      proxyExternalReq
+uest: "fetch",
+      incrementalCache
+: "dummy" | function,
+      tagCache: "dummy
+" | function,
+      queue: "dummy" |
+ "direct" | function,
+    },
+  },
+}
+
+
+    at ensureCloudflar
+eConfig (file:///C:/Us
+ers/round/projects/wor
+d-drop-game/node_modul
+es/@opennextjs/cloudfl
+are/dist/cli/build/uti
+ls/ensure-cf-config.js
+:62:15)
+    at compileConfig (
+file:///C:/Users/round
+/projects/word-drop-ga
+me/node_modules/@openn
+extjs/cloudflare/dist/
+cli/commands/utils.js:
+63:5)
+    at async buildComm
+and (file:///C:/Users/
+round/projects/word-dr
+op-game/node_modules/@
+opennextjs/cloudflare/
+dist/cli/commands/buil
+d.js:11:34)
+
+Node.js v22.14.0
